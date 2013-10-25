@@ -34,3 +34,18 @@ function sortObjArray(objArray, propName) {
     });
 } //sortObjArray()
 
+function render(entries) {
+    var instance;
+    var instance1;
+    $.each(entries, function(){
+        instance = template.clone();
+        for(prop in this) {
+            if(prop==='pic') {
+                set.attr;
+            } else {
+                find('.' + prop).html(prop);
+            }
+        }
+    })
+}
+
