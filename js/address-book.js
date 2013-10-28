@@ -36,16 +36,46 @@ function sortObjArray(objArray, propName) {
 
 function render(entries) {
     var instance;
-    var instance1;
+    var temp = $('.template');
+    var addr = $('.address-book');
     $.each(entries, function(){
-        instance = template.clone();
-        for(prop in this) {
-            if(prop==='pic') {
-                set.attr;
-            } else {
-                find('.' + prop).html(prop);
-            }
-        }
-    })
+        instance = temp.clone();
+        instance.find('.first').html(this.first);
+        instance.find('.last').html(this.last);
+        instance.find('.title').html(this.title);
+        instance.find('.dept').html(this.dept);
+        instance.find('.pic').attr({
+            src: this.pic,
+              alt: 'Picture of ' + this.first + ' ' + this.last
+        });
+        instance.removeClass('template');
+        addr.append(instance);
+        // for(instance in this) {
+        //     if(instance==='pic') {
+        //         set.attr('src', this.pic);
+        //     } else {
+        //         find('.' + instance).html(prop);
+        //     }
+        // }
+    });
 }
+
+$(function(){
+
+    var instance1 = Employees.entries;
+    sortObjArray(instance1, 'last');
+    render(instance1);
+
+    $('.sort-ui', '.btn').click(function(){
+        var sortBtn = $(this);
+        var attribute = sortBtn.attr('data-sortby');
+        sortObjArray(instance1, attribute);
+        render(instance1);
+        var sib = $(this).siblings();
+        sib.removeClass('active');
+        this.addClass('active');
+    });
+
+
+});
 
