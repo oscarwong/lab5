@@ -35,6 +35,8 @@ function sortObjArray(objArray, propName) {
 } //sortObjArray()
 
 function render(entries) {
+    $('.address-book').hide();
+    $('.address-book').empty();
     var instance;
     var temp = $('.template');
     var addr = $('.address-book');
@@ -50,14 +52,9 @@ function render(entries) {
         });
         instance.removeClass('template');
         addr.append(instance);
-        // for(instance in this) {
-        //     if(instance==='pic') {
-        //         set.attr('src', this.pic);
-        //     } else {
-        //         find('.' + instance).html(prop);
-        //     }
-        // }
+        
     });
+    $('.address-book').fadeIn();
 }
 
 $(function(){
@@ -66,7 +63,7 @@ $(function(){
     sortObjArray(instance1, 'last');
     render(instance1);
 
-    $('.sort-ui', '.btn').click(function(){
+    $('.sort-ui .btn').click(function(){
         var sortBtn = $(this);
         var attribute = sortBtn.attr('data-sortby');
         sortObjArray(instance1, attribute);
